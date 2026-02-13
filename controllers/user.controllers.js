@@ -4,16 +4,15 @@ import { readUsers, writeUsers } from '../services/user.services.js';
 
 async function signUp(req, res) {
  try {
-  const { firstname, lastname, email, password } = req.body;
-  if (!firstname || !lastname || !email || !password) {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
   const users = readUsers();
   const user = { 
     id: Date.now(), 
-    firstname, 
-    lastname, 
+    name, 
     email, 
     password: await bcrypt.hash(password, 10),
     createdAt: new Date().toISOString()
@@ -48,7 +47,7 @@ async function signIn(req, res) {
       return res.status(401).json({ error: 'Invalid password' });
     }
     const JWT_SECRET = process.env.JWT_SECRET;
-    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '24h' });
     res.status(200).json({ message: 'Sign in successful', token });
   } catch (error) {
       console.error(error);

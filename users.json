@@ -1,10 +1,9 @@
 [
   {
-    "id": 1770574297126,
-    "firstname": "Nouhaila",
-    "lastname": "El Kante",
+    "id": 1770996783687,
+    "name": "nouhaila",
     "email": "nouhaila@gmailcom",
-    "password": "$2b$10$MGanwE/EkusbQgOpZW34IOd.Y1mLFnzi0kFqk9ixt.UFNuDX53qR6",
-    "createdAt": "2026-02-08T18:11:37.329Z"
+    "password": "$2b$10$IoQ9VpVTzJzZE7.q1t2CjOBeK/2YfxzDwUKdPTaWLH6mpWIYVGCh6",
+    "createdAt": "2026-02-13T15:33:03.798Z"
   }
 ]

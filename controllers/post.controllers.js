@@ -2,8 +2,8 @@ import {readPosts, writePosts} from '../services/post.services.js';
 
 export function addPost(req, res) {
     try {
-    const { legend, description, imageUrl } = req.body;
-    if (!legend || !description || !imageUrl) {
+    const { legend, description } = req.body;
+    if (!legend || !description) {
         return res.status(400).json({ error: 'All fields are required' });
     }
     let posts = readPosts();
@@ -11,7 +11,6 @@ export function addPost(req, res) {
         id: Date.now(), 
         legend, 
         description, 
-        imageUrl 
     };
     posts.unshift(post);
     writePosts(posts);
@@ -49,7 +48,6 @@ export function updatePost(req, res) {
             ...posts[postIndex], 
             legend, 
             description, 
-            imageUrl 
         };
         writePosts(posts);
         res.status(200).json({message: "Post updated successfully", post: posts[postIndex]});

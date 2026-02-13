@@ -1,20 +1,12 @@
 [
   {
-    "id": 1770568043947,
-    "legend": "geeks;",
-    "description": "fullstack and AI",
-    "imageUrl": "sdfyuikjhgfd"
+    "id": 1770996255781,
+    "legend": "alx;",
+    "description": "AI"
   },
   {
-    "id": 1770568041370,
-    "legend": "alx",
-    "description": "AI",
-    "imageUrl": "sdfyuikjhgfd"
-  },
-  {
-    "id": 1770568032228,
+    "id": 1770996213894,
     "legend": "geeks;",
-    "description": "fullstack and AI",
-    "imageUrl": "sdfyuikjhgfd"
+    "description": "fullstack and AI"
   }
 ]
