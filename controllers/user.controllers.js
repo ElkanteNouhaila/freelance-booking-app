@@ -96,6 +96,16 @@ async function login(req, res) {
   } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal server error' });
+      
+    //   //! Handle JWT errors
+    //   if (error.name === 'JsonWebTokenError') {
+    //     return res.status(500).json({ message: "Token generation failed" });
+    // }
+
+    // return res.status(500).json({ 
+    //     message: "Internal server error",
+    //     ...(process.env.NODE_ENV === 'development' && { error: error.message })
+    // });
     }
 }
 
