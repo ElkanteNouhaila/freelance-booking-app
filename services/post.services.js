@@ -1,16 +1,9 @@
-import fs from 'fs';
-const file = 'posts.json';
+import {Router} from "express";
+import { getPosts } from "../controllers/post.controllers";
+import auth from "../middlewares/auth.middlewares"
 
-function readPosts() {
-  try {
-    return JSON.parse(fs.readFileSync(file, 'utf-8'));
-  } catch (error) {
-    return [];
-  }
-}
+const router = Router();
 
-function writePosts(posts) {
-  fs.writeFileSync(file, JSON.stringify(posts, null, 2));
-}
+router.get("/", auth, getPosts)
 
-export { readPosts, writePosts };
+export default router;

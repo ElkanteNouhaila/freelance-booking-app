@@ -4,12 +4,15 @@ import dotenv from 'dotenv';
 
 import userRouter from "./routes/user.routes.js";
 import postRouter from "./routes/post.routes.js";
+import connectdb from './db/conn.js';
 
 
 dotenv.config();
+console.log(process.env.MONGO_URI); 
+
 
 const app = express();
-app.use(express.urlencoded({ extended: true }));
+
 app.use(express.json());
 // app.use(cors());
 
@@ -18,4 +21,8 @@ app.use('/posts', postRouter);
 
 const PORT = process.env.PORT || 3003;
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+connectdb().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+});

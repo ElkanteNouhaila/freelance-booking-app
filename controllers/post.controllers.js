@@ -1,4 +1,3 @@
-import {readPosts, writePosts} from '../services/post.services.js';
 
 export function addPost(req, res) {
     try {
@@ -37,7 +36,7 @@ export function getPosts(req, res) {
 export function updatePost(req, res) {
     try {
         const { id } = req.params;
-        const { legend, description, imageUrl } = req.body;
+        const { legend, description } = req.body;
         let posts = readPosts();
 
         const postIndex = posts.findIndex(p => p.id === Number(id));

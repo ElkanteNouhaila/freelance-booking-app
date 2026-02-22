@@ -3,7 +3,7 @@ import { addPost, getPosts, updatePost, deletePost } from "../controllers/post.c
 
 const router = Router();
 
-router.get('/', getPosts);
+router.get('/',getPosts);
 router.post('/', addPost);
 router.put('/:id', updatePost);
 router.delete('/:id', deletePost);
