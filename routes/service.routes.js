@@ -13,7 +13,7 @@ router.get(
 )
 
 router.get(
-    '/service',
+    '/service/:id',
     verifytoken,
     getServiceById
 )
@@ -28,14 +28,14 @@ router.post(
 );
 
 router.put(
-    '/update-service',
+    '/update-service/:id',
     verifytoken,
     authorizeRole("FREELANCER"),
     updateService
 )
 
 router.delete(
-    '/delete-service',
+    '/delete-service/:id',
     verifytoken,
     authorizeRole("FREELANCER"),
     deleteService
