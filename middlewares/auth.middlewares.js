@@ -1,6 +1,6 @@
 import jwt  from "jsonwebtoken";
 
-function verifytoken(req, res, next){
+export function verifytoken(req, res, next){
     try {
         const token = req.headers.authorization.split(" ")[1]
 
@@ -9,13 +9,26 @@ function verifytoken(req, res, next){
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
+        if(!decoded){
+            return res.status(401).json({message:"unauthorized"})
+        }
+
         req.user = decoded
 
         next()
 
     } catch (error) {
-        return res.status(401).json({ meassage:"unauthorized"})
+        console.error(error)
+        return res.status(401).json({ message:"unauthorized"})
     }
 }
 
-export default verifytoken
+export function authorizeRole(role) {
+    return (req, res, next) => {
+      if (!req.user || req.user.role !== role) {
+        return res.status(403).json({ message: "Access denied" });
+      }
+      next();
+    };
+  }
+

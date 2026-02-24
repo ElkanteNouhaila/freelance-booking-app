@@ -5,14 +5,13 @@ import User from "../models/userSchema.js"
 async function register(req, res) {
   try {
     const { name, email, password, role } = req.body;
-
     if (!name || !email || !password) {
       return res.status(400).json({ error: 'All fields are required' });
     }
 
     const existinguser = await User.findOne({ email })
     if(existinguser){
-      return res.status(409).json({message:"Email already registred"})
+      return res.status(409).json({message:"Email already registered"})
     }
 
     const hashedpassword = await bcrypt.hash(password, 10)
@@ -20,14 +19,16 @@ async function register(req, res) {
       name, 
       email, 
       password: hashedpassword,
-      role:role,
-      createdAt: new Date().toISOString()
+      role
     });
 
     await newuser.save()
 
-
-    res.status(201).json({message:"User sign up successfully", user:newuser});
+    newuser.password = undefined;
+    res.status(201).json({
+      message:"User sign up successfully",
+      user:newuser
+      });
 
   } catch (error) {
     console.error(error);

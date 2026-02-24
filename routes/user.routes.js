@@ -1,9 +1,14 @@
 import { Router } from 'express';
-import { register, login } from '../controllers/user.controllers.js';
+import { deleteUser, getUser, updateUser } from '../controllers/user.controller.js';
+import {verifytoken, authorizeRole} from '../middlewares/auth.middlewares.js'
 
 const router = Router();
 
-router.post('/register', register);
-router.post('/login', login);
+// anyone logged in can access
+router.get('/me', verifytoken, getUser);
+router.delete('/me', verifytoken, deleteUser)
+
+// only freelancers can access
+router.put('/freelancer-profile', verifytoken, authorizeRole("FREELANCER"), updateUser);
 
 export default router;

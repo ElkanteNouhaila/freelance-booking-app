@@ -14,12 +14,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    role:{
+    role: {
         type: String,
-        required: true
-    }
+        required: true,
+        enum: ["USER", "FREELANCER"],
+        default: "USER"
 
-})
+      }
+
+}, { timestamps: true })
 
 const User = mongoose.model("User", userSchema)
 
